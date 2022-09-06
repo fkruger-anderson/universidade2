@@ -71,7 +71,7 @@ public class Curso {
         if (prof != null) {
             return turmas.add(new Turma(++geradorTurma, nome, qtdVagas, prof));
         } else {
-            System.out.println("Dados n„o encontrados nesta Universidade.");
+            System.out.println("Dados n√£o encontrados nesta Universidade.");
             return false;
         }
     }
@@ -89,11 +89,10 @@ public class Curso {
     }
 
     public Set<Aluno> alunosInscritosCurso() {
-        Set<Aluno> alunosInscritos = this.getTurmas()
-                                         .stream()
-                                         .map(Turma::getAlunos)
-                                         .flatMap(Collection::stream)
-                                         .collect(Collectors.toSet());
+        Set<Aluno> alunosInscritos = getTurmas().stream()
+                                                .map(Turma::getAlunos)
+                                                .flatMap(Collection::stream)
+                                                .collect(Collectors.toSet());
         
         alunosInscritos.forEach(a -> System.out.printf("%s - %s\n", a.getMatricula(), a.getNome()));
         
@@ -104,7 +103,7 @@ public class Curso {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getCodigo()).append(" - ").append(getNome())
-          .append(", CriaÁ„o: ").append(getDataCriacao().format(dtf)).append(", ")
+          .append(", Cria√ß√£o: ").append(getDataCriacao().format(dtf)).append(", ")
           .append(getDescricao()).append("\n")
           .append("\nTurmas:\n")
           .append(turmas.stream().map(Turma::toString).collect(Collectors.joining("\n\n")));
