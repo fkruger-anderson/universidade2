@@ -78,11 +78,6 @@ public class Turma {
                                               .collect(Collectors.groupingBy(a -> a.getAluno(),
                                                       Collectors.averagingDouble(Nota::getNota)));
         
-        /*System.out.println("Médias por aluno:");
-        for (Map.Entry<String, Double> notas : medias.entrySet()) {
-            System.out.printf("%s - %.2f\n", notas.getKey(), notas.getValue());
-        }*/
-        
         return medias;
     }
     

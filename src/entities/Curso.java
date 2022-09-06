@@ -89,11 +89,10 @@ public class Curso {
     }
 
     public Set<Aluno> alunosInscritosCurso() {
-        Set<Aluno> alunosInscritos = this.getTurmas()
-                                         .stream()
-                                         .map(Turma::getAlunos)
-                                         .flatMap(Collection::stream)
-                                         .collect(Collectors.toSet());
+        Set<Aluno> alunosInscritos = getTurmas().stream()
+                                                .map(Turma::getAlunos)
+                                                .flatMap(Collection::stream)
+                                                .collect(Collectors.toSet());
         
         alunosInscritos.forEach(a -> System.out.printf("%s - %s\n", a.getMatricula(), a.getNome()));
         
