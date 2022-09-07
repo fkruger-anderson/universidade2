@@ -18,18 +18,16 @@ public class Curso {
     private LocalDate dataCriacao;
     private String descricao;
 
-    private List<Turma> turmas;
-    private List<Professor> professores;
+    private List<Turma> turmas = new ArrayList<>();
+    private List<Professor> professores = new ArrayList<>();
 
-    private static int geradorTurma = 0;
+    private static int contCurso = 0;
 
-    public Curso(int codigo, String nome, String dataCriacao, String descricao) {
-        this.codigo = codigo;
+    public Curso(String nome, String dataCriacao, String descricao) {
+        this.codigo = ++contCurso;
         this.nome = nome;
         this.dataCriacao = LocalDate.parse(dataCriacao, dtf);
         this.descricao = descricao;
-        this.turmas = new ArrayList<>();
-        this.professores = new ArrayList<>();
     }
 
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -69,7 +67,7 @@ public class Curso {
         Professor prof = this.buscarProfessor(matriculaProf);
 
         if (prof != null) {
-            return turmas.add(new Turma(++geradorTurma, nome, qtdVagas, prof));
+            return turmas.add(new Turma(nome, qtdVagas, prof));
         } else {
             System.out.println("Dados não encontrados nesta Universidade.");
             return false;
@@ -90,7 +88,7 @@ public class Curso {
 
     public Set<Aluno> alunosInscritosCurso() {
         Set<Aluno> alunosInscritos = getTurmas().stream()
-                                                .map(Turma::getAlunos)
+                                                .map(Turma::getAlunosMatriculados)
                                                 .flatMap(Collection::stream)
                                                 .collect(Collectors.toSet());
         

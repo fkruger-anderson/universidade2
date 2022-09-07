@@ -15,17 +15,18 @@ public class Turma {
     private int codigo;
     private String nome;
     private int qtdVagas;
-    private List<Aluno> alunos;
     private Professor professor;
-    private List<Nota> notas;
 
-    public Turma(int codigo, String nome, int qtdVagas, Professor professor) {
-        this.codigo = codigo;
+    private List<Aluno> alunosMatriculados = new ArrayList<>();
+    private List<Nota> notas = new ArrayList<>();
+
+    private static int contTurma = 0;
+
+    public Turma(String nome, int qtdVagas, Professor professor) {
+        this.codigo = ++contTurma;
         this.nome = nome;
         this.qtdVagas = qtdVagas;
-        this.alunos = new ArrayList<>();
         this.professor = professor;
-        this.notas = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -40,24 +41,24 @@ public class Turma {
         return qtdVagas;
     }
 
-    public List<Aluno> getAlunos() {
-        return alunos;
+    public List<Aluno> getAlunosMatriculados() {
+        return alunosMatriculados;
     }
     
     public List<Nota> getNotas() {
         return notas;
     }
 
-    public Aluno buscarAluno(String matricula) {
-        return getAlunos().stream()
+    public Aluno buscarAlunoMatriculado(String matricula) {
+        return getAlunosMatriculados().stream()
                           .filter(a -> a.getMatricula().equalsIgnoreCase(matricula))
                           .findFirst()
                           .orElse(null);
     }
 
-    public boolean matricularAluno(Aluno aluno) {
-        if (getAlunos().size() + 1 <= getQtdVagas() && !getAlunos().contains(aluno)) {
-            return getAlunos().add(aluno);
+    public boolean matricularAlunoTurma(Aluno aluno) {
+        if (getAlunosMatriculados().size() + 1 <= getQtdVagas() && !getAlunosMatriculados().contains(aluno)) {
+            return getAlunosMatriculados().add(aluno);
             } else {
                 System.out.println("Excedeu o limite de inscritos da turma, ou o aluno já encontra-se matriculado.");
                 return false;
@@ -65,8 +66,8 @@ public class Turma {
     }
 
     public boolean registrarNotaAluno(String matricula, Double nota) {
-        if (!buscarAluno(matricula).equals(null)) {
-            return getNotas().add(new Nota(buscarAluno(matricula), nota));
+        if (!buscarAlunoMatriculado(matricula).equals(null)) {
+            return getNotas().add(new Nota(buscarAlunoMatriculado(matricula), nota));
         } else {
             System.out.println("Dados não encontrados nesta Universidade.");
             return false;
@@ -125,7 +126,7 @@ public class Turma {
         sb.append(getCodigo()).append(" - ").append(getNome())
           .append(", Qtd vagas: ").append(qtdVagas)
           .append(", Professor(a): ").append(professor.getMatricula()).append(" - ").append(professor.getNome())
-          .append(":\n").append(getAlunos().stream().map(Pessoa::toString).collect(Collectors.joining("\n")));
+          .append(":\n").append(getAlunosMatriculados().stream().map(Pessoa::toString).collect(Collectors.joining("\n")));
         return sb.toString();
     }
 }

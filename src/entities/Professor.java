@@ -7,14 +7,14 @@ import java.time.LocalDate;
  * @author 07337354959
  */
 public class Professor extends Pessoa {
-    private static long contar = 0;
+    private static long contProfessor = 0;
     private String matricula;
     private Curso curso;
     private LocalDate dataAdmissao;
 
     public Professor(Curso curso, String dataAdmissao, String nome, String dataNascimento, String CPF) {
         super(nome, dataNascimento, CPF);
-        this.matricula = String.format("P%d%d", LocalDate.parse(dataAdmissao, dtf).getYear(), ++contar);
+        this.matricula = String.format("P%d%d", LocalDate.parse(dataAdmissao, dtf).getYear(), ++contProfessor);
         this.curso = curso;
         this.dataAdmissao = LocalDate.parse(dataAdmissao, dtf);
     }

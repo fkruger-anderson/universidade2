@@ -1,6 +1,5 @@
 package application;
 
-import entities.Aluno;
 import entities.Universidade;
 
 public class Program {
@@ -10,25 +9,27 @@ public class Program {
         uni1.buscarCurso(1).adicionarProfessor("01/01/2020", "Fernando", "01/05/1970", "016.958.969-20");
         uni1.buscarCurso(1).adicionarProfessor("01/01/2020", "Matheus", "01/05/1970", "016.958.969-20");
 
-        Aluno aluno1 = new Aluno("Anderson", "15/03/1993", "073.373.549-59");
-        Aluno aluno2 = new Aluno("Gabriela", "15/03/1993", "073.373.549-59");
-        Aluno aluno3 = new Aluno("Jaqueline", "15/03/1993", "073.373.549-59");
-        Aluno aluno4 = new Aluno("Ricardo", "15/03/1993", "073.373.549-59");
-        Aluno aluno5 = new Aluno("João", "15/03/1993", "073.373.549-59");
+        uni1.matricularAlunoUni("Anderson", "15/03/1993", "073.373.549-59");
+        uni1.matricularAlunoUni("Gabriela", "15/03/1993", "073.373.549-59");
+        uni1.matricularAlunoUni("Jaqueline", "15/03/1993", "073.373.549-59");
+        uni1.matricularAlunoUni("Ricardo", "15/03/1993", "073.373.549-59");
+        uni1.matricularAlunoUni("João", "15/03/1993", "073.373.549-59");
 
         uni1.buscarCurso(1).criarTurma("Programação I", 30, "P20201");
-        uni1.buscarCurso(1).buscarTurma(1).matricularAluno(aluno1);
-        uni1.buscarCurso(1).buscarTurma(1).matricularAluno(aluno2);
-        uni1.buscarCurso(1).buscarTurma(1).matricularAluno(aluno3);
-        uni1.buscarCurso(1).buscarTurma(1).matricularAluno(aluno4);
-        uni1.buscarCurso(1).buscarTurma(1).matricularAluno(aluno5);
+        
+        uni1.buscarCurso(1).buscarTurma(1).matricularAlunoTurma(uni1.buscarAluno("A19931"));
+        uni1.buscarCurso(1).buscarTurma(1).matricularAlunoTurma(uni1.buscarAluno("A19932"));
+        uni1.buscarCurso(1).buscarTurma(1).matricularAlunoTurma(uni1.buscarAluno("A19933"));
+        uni1.buscarCurso(1).buscarTurma(1).matricularAlunoTurma(uni1.buscarAluno("A19934"));
+        uni1.buscarCurso(1).buscarTurma(1).matricularAlunoTurma(uni1.buscarAluno("A19935"));
 
         uni1.buscarCurso(1).criarTurma("Programação II", 30, "P20202");
-        uni1.buscarCurso(1).buscarTurma(2).matricularAluno(aluno1);
-        uni1.buscarCurso(1).buscarTurma(2).matricularAluno(aluno2);
-        uni1.buscarCurso(1).buscarTurma(2).matricularAluno(aluno3);
-        uni1.buscarCurso(1).buscarTurma(2).matricularAluno(aluno4);
-        uni1.buscarCurso(1).buscarTurma(2).matricularAluno(aluno5);
+        
+        uni1.buscarCurso(1).buscarTurma(2).matricularAlunoTurma(uni1.buscarAluno("A19931"));
+        uni1.buscarCurso(1).buscarTurma(2).matricularAlunoTurma(uni1.buscarAluno("A19932"));
+        uni1.buscarCurso(1).buscarTurma(2).matricularAlunoTurma(uni1.buscarAluno("A19933"));
+        uni1.buscarCurso(1).buscarTurma(2).matricularAlunoTurma(uni1.buscarAluno("A19934"));
+        uni1.buscarCurso(1).buscarTurma(2).matricularAlunoTurma(uni1.buscarAluno("A19935"));
 
         System.out.println(uni1);
         
