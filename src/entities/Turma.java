@@ -49,11 +49,11 @@ public class Turma {
         return notas;
     }
 
-    public Aluno buscarAlunoMatriculado(String matricula) {
+    public Aluno buscarAlunoMatriculadoTurma(String matricula) {
         return getAlunosMatriculados().stream()
-                          .filter(a -> a.getMatricula().equalsIgnoreCase(matricula))
-                          .findFirst()
-                          .orElse(null);
+                                      .filter(a -> a.getMatricula().equalsIgnoreCase(matricula))
+                                      .findFirst()
+                                      .orElse(null);
     }
 
     public boolean matricularAlunoTurma(Aluno aluno) {
@@ -66,8 +66,9 @@ public class Turma {
     }
 
     public boolean registrarNotaAluno(String matricula, Double nota) {
-        if (!buscarAlunoMatriculado(matricula).equals(null)) {
-            return getNotas().add(new Nota(buscarAlunoMatriculado(matricula), nota));
+        Aluno aluno = buscarAlunoMatriculadoTurma(matricula);
+        if (!aluno.equals(null)) {
+            return getNotas().add(new Nota(aluno, nota));
         } else {
             System.out.println("Dados não encontrados nesta Universidade.");
             return false;

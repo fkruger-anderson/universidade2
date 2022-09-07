@@ -49,7 +49,7 @@ public class Universidade {
         return alunos.add(new Aluno(nome, dataNascimento, CPF));
     }
     
-    public Aluno buscarAluno(String matricula) {
+    public Aluno buscarAlunoUni(String matricula) {
         return getAlunos().stream()
                           .filter(a -> a.getMatricula().equalsIgnoreCase(matricula))
                           .findFirst()
