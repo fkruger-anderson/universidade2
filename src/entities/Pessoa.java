@@ -31,6 +31,35 @@ public abstract class Pessoa {
     public String getCPF() {
         return CPF;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + Objects.hashCode(this.dataNascimento);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.CPF, other.CPF)) {
+            return false;
+        }
+        return Objects.equals(this.dataNascimento, other.dataNascimento);
+    }
 
     @Override
     public String toString() {
