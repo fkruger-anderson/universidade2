@@ -60,7 +60,7 @@ public class Turma {
         if (getAlunosMatriculados().size() + 1 <= getQtdVagas() && !getAlunosMatriculados().contains(aluno)) {
             return getAlunosMatriculados().add(aluno);
             } else {
-                System.out.println("Excedeu o limite de inscritos da turma, ou o aluno já encontra-se matriculado.");
+                System.out.println("Excedeu o limite de inscritos da turma, ou o aluno jÃ¡ encontra-se matriculado.");
                 return false;
             }
     }
@@ -70,14 +70,14 @@ public class Turma {
         if (!aluno.equals(null)) {
             return getNotas().add(new Nota(aluno, nota));
         } else {
-            System.out.println("Dados não encontrados nesta Universidade.");
+            System.out.println("Dados nÃ£o encontrados nesta Universidade.");
             return false;
         }
     }
 
     public Map<Aluno, Double> calcMediaAlunos() {
         Map<Aluno, Double> medias = getNotas().stream()
-                                              .collect(Collectors.groupingBy(a -> a.getAluno(),
+                                              .collect(Collectors.groupingBy(Nota::getAluno(),
                                                       Collectors.averagingDouble(Nota::getNota)));
         
         return medias;
@@ -94,7 +94,7 @@ public class Turma {
                                                                       (e1, e2) -> e1, 
                                                                       LinkedHashMap::new));
         
-        System.out.println("Médias por aluno - Ordem alfabética:");
+        System.out.println("MÃ©dias por aluno - Ordem alfabÃ©tica:");
         for (Entry<Aluno, Double> notas : ordemAlfabetica.entrySet()) {
             System.out.printf("%s - %.2f\n", notas.getKey().getNome(), notas.getValue());
         }
@@ -113,7 +113,7 @@ public class Turma {
                                                                        (e1, e2) -> e1, 
                                                                        LinkedHashMap::new));
         
-        System.out.println("Médias por aluno - Por desempenho:");
+        System.out.println("MÃ©dias por aluno - Por desempenho:");
         for (Map.Entry<Aluno, Double> notas : ordemDesempenhoa.entrySet()) {
             System.out.printf("%s - %.2f\n", notas.getKey().getNome(), notas.getValue());
         }
